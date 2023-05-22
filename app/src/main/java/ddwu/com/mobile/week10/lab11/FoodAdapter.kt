@@ -36,6 +36,8 @@ class FoodAdapter (val foods: ArrayList<FoodDto>) : RecyclerView.Adapter<FoodAda
          init{
             view.setOnLongClickListener{
                 listener.ItemLongClick(it, adapterPosition)
+                foods.removeAt(adapterPosition)
+                adapter.notifyDataSetChanded()
                 true
             }
         }
