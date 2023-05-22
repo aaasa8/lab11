@@ -9,17 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import ddwu.com.mobile.week10.lab11.databinding.ListItemBinding
 
 class FoodAdapter (val foods: ArrayList<FoodDto>) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
-    interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int)
+
+   interface ItemLongClickListener {
+        fun ItemLongClick(view: View, position: Int)
     }
 
-    lateinit var listener : OnItemClickListener
+    lateinit var listener : ItemLongClickListener
 
-    fun setOnItemClickListener(listener: OnItemClickListener){
+
+    fun setItemLongClickListener(listener: ItemLongClickListener){
         this.listener = listener
     }
-
-
 
     // RecyclerView 에 표시할 전체 뷰의 개수 == 원본 데이터의 개수, 데이터의 개수 확인이 필요할 때 호출
     override fun getItemCount(): Int = foods.size
@@ -32,11 +32,11 @@ class FoodAdapter (val foods: ArrayList<FoodDto>) : RecyclerView.Adapter<FoodAda
 
 
     // 항목의 뷰를 생성한 후 멤버변수로 보관하는 ViewHolder
-    class FoodViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view){
-        init{
-            itemView.setOnClickListener{
-                listener.onItemClick(it, adapterPosition)
-
+    class FoodViewHolder(view: View, listener: ItemLongClickListener) : RecyclerView.ViewHolder(view){
+         init{
+            view.setOnLongClickListener{
+                listener.ItemLongClick(it, adapterPosition)
+                true
             }
         }
 
