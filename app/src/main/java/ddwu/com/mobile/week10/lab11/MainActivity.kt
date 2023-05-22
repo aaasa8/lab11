@@ -24,12 +24,19 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
 
-        val listener = object : FoodAdapter.OnItemClickListener{
-            override fun onItemClick(view: View, position: Int){
+        adapter.setOnItemClickListener(object: FoodAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
                 Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
             }
-        }
-        adapter.setOnItemClickListener(listener)
+
+        })
+
+//        val listener = (object : FoodAdapter.OnItemClickListener{
+//            override fun onItemClick(view: View, position: Int){
+//                Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//        adapter.setOnItemClickListener(listener)
 
     }
 }
