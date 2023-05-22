@@ -26,11 +26,18 @@ class MainActivity : AppCompatActivity() {
 
         val listener = (object : FoodAdapter.ItemLongClickListener{
             override fun ItemLongClick(view: View, position: Int) {
+                AlertDialog.Builder(this).run{
+                    setIcon(android.R.drawable.ic_dialog_info)
+                    setMessage("정말 종료하시겠습니까?")
+                    setPositiveButton("확인", adapter.setItemLongClickListener(listener))
+                    setNegativeButton("취소", null)
+                    show()
+                }
                 Toast.makeText(this@MainActivity, "${foods[position]}", Toast.LENGTH_SHORT).show()
             }
 
         })
-        adapter.setItemLongClickListener(listener)
+       
 
 
     }
