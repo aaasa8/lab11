@@ -28,8 +28,12 @@ class MainActivity : AppCompatActivity() {
             override fun ItemLongClick(view: View, position: Int) {
                 AlertDialog.Builder(this).run{
                     setIcon(android.R.drawable.ic_dialog_info)
-                    setMessage("정말 종료하시겠습니까?")
-                    setPositiveButton("확인", adapter.setItemLongClickListener(listener))
+                    setMessage("정말 삭제하시겠습니까?")
+                    setPositiveButton("확인", object: DialogInterfade.OnClickListener{
+                        override fun onClick(dialog: DialogInterface?, which: Int){
+                        
+                        }                 
+                    })
                     setNegativeButton("취소", null)
                     show()
                 }
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         })
        
-
+            adapter.setItemLongClickListener(listener)
 
     }
 }
